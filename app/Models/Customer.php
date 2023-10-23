@@ -23,5 +23,5 @@ class Customer extends Model
         'nama_institusi'
     ];
 
-    protected $guarded = ['id'];
+    //protected $guarded = ['id'];
 }

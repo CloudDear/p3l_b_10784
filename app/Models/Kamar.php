@@ -24,7 +24,7 @@ class Kamar extends Model
         'detail_kamar',
     ];
 
-    protected $guarded = ['id'];
+    //protected $guarded = ['id'];
 
     public function tarifs()
     {

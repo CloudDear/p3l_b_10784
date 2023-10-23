@@ -95,6 +95,7 @@ class TarifController extends Controller
 
         try {
             $tarif = Tarif::find($id);
+            $season = Season::all();
             // Getting values from the blade template form
             $tarif->tarif_terpasang = $request->get('tarif_terpasang');
             $tarif->save();

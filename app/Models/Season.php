@@ -21,10 +21,10 @@ class Season extends Model
         'tanggal_berakhir'
     ];
 
-    protected $guarded = ['id'];
+    //protected $guarded = ['id'];
 
     public function tarifs()
     {
-        return $this->hasMany(Tarif::class);
+        return $this->hasMany(Tarif::class, 'tarif_id');
     }
 }

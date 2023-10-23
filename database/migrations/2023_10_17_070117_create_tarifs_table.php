@@ -15,8 +15,9 @@ return new class extends Migration {
         Schema::create('tarifs', function (Blueprint $table) {
             $table->id();
             $table->integer('tarif_terpasang');
-            $table->unsignedBigInteger('season_id')->nullable();
-            $table->foreign('season_id')->references('id')->on('seasons');
+            $table->foreignId('season_id')->references('id')->on('seasons')->onDelete('cascade');
+            //$table->unsignedBigInteger('season_id')->nullable();
+            //$table->foreign('season_id')->references('id')->on('seasons');
             // $table->unsignedBigInteger('kamar_id');
             $table->timestamps();
 

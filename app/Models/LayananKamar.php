@@ -14,10 +14,10 @@ class LayananKamar extends Model
      * @var array
      */
 
-     protected $fillable = [
+    protected $fillable = [
         'nama_layanan',
         'tarif_layanan',
     ];
 
-    protected $guarded = ['id'];
+    //protected $guarded = ['id'];
 }
