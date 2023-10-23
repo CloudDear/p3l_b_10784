@@ -90,7 +90,8 @@ class TarifController extends Controller
     {
         // Validation for required fields (and using some regex to validate our numeric value)
         $this->validate($request, [
-            'tarif_terpasang' => 'required'
+            'tarif_terpasang' => 'required',
+            'season_id' => 'required'
         ]);
 
         try {
@@ -98,6 +99,7 @@ class TarifController extends Controller
             $season = Season::all();
             // Getting values from the blade template form
             $tarif->tarif_terpasang = $request->get('tarif_terpasang');
+            $tarif->season_id = $request->get('season_id');
             $tarif->save();
 
             return redirect()->route('tarif.index')->with(['success' => 'Data Berhasil Diupdate!']);

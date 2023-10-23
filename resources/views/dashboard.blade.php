@@ -104,9 +104,9 @@
                                 <i class="nav-icon far fa-circle"></i>
                                 <p> Tarif</p>
                             </a>
-                            <a href="{{ url('fasilitas_berbayar') }}" class="nav-link">
+                            <a href="{{ url('layanan_kamar') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
-                                <p> Fasilitas Berbayar</p>
+                                <p> Layanan Kamar</p>
                             </a>
                         </li>
                     </ul>
