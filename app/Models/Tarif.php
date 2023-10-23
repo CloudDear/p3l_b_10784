@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Tarif extends Model
+{
+    use HasFactory;
+
+    /**
+     * fillable
+     *
+     * @var array
+     */
+
+    protected $fillable = [
+        'tarif_terpasang'
+    ];
+
+    protected $guarded = ['id'];
+
+    public function seasons()
+    {
+        return $this->belongsTo(Season::class, 'season_id'); //bagian ini
+    }
+
+    public function kamars()
+    {
+        return $this->belongsTo(Kamar::class);
+    }
+}
