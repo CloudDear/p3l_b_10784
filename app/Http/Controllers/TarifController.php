@@ -15,11 +15,32 @@ class TarifController extends Controller
      *@return void
      */
 
-    public function index()
+    // public function index()
+    // {
+    //     //get posts
+    //     $tarif = Tarif::latest()->paginate(5);
+    //     //render view with posts
+    //     return view('tarif.index', compact('tarif'));
+    // }
+
+    public function index(Request $request)
     {
-        //get posts
-        $tarif = Tarif::latest()->paginate(5);
-        //render view with posts
+        // Get the search query from the request
+        $keyword = $request->input('keyword');
+
+        // Check if a search query is present
+        if ($keyword) {
+            // Perform the search and paginate the results
+            $tarif = Tarif::where('tarif_terpasang', 'like', "%$keyword%")
+                ->latest()
+                ->paginate(5);
+
+        } else {
+            // If no search query is present, get all records
+            $tarif = Tarif::latest()->paginate(5);
+        }
+
+        // Render the view with the posts
         return view('tarif.index', compact('tarif'));
     }
 

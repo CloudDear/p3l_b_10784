@@ -29,8 +29,21 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('tarif.create') }}" class="btn btn-md btn-success mb-3">TAMBAH
-                                TARIF</a>
+
+
+
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ route('tarif.create') }}" class="btn btn-md btn-success mb-3">TAMBAH
+                                    TARIF</a>
+                                <form action="{{ route('tarif.index') }}" method="get" class="form-inline my-2 my-lg-0">
+                                    <input type="search" class="form-control mr-sm-2" placeholder="Cari Tarif"
+                                        aria-label="Tarif Terpasang" name="keyword">
+                                    <button class="btn btn-info" type="submit">Cari</button>
+                                </form>
+                            </div>
+
+
                             <div class="table-responsive p-0">
                                 <table class="table table-hover text-nowrap">
                                     <thead>
