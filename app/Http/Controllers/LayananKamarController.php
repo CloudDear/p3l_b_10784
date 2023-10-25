@@ -13,13 +13,27 @@ class LayananKamarController extends Controller
      *@return void
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        //get posts
-        $layanan_kamar = LayananKamar::latest()->paginate(5);
-        //render view with posts
+        // Get the search query from the request
+        $keyword = $request->input('keyword');
+
+        // Check if a search query is present
+        if ($keyword) {
+            // Perform the search and paginate the results
+            $layanan_kamar = LayananKamar::where('nama_layanan', 'like', "%$keyword%")
+                ->latest()
+                ->paginate(5);
+
+        } else {
+            // If no search query is present, get all records
+            $layanan_kamar = LayananKamar::latest()->paginate(5);
+        }
+
+        // Render the view with the posts
         return view('layanan_kamar.index', compact('layanan_kamar'));
     }
+
 
     /**
      * create
@@ -103,4 +117,24 @@ class LayananKamarController extends Controller
 
 
     }
+
+    public function search(Request $request)
+    {
+        $searchResults = [];
+
+        // Check if a search query is present
+        if ($request->has('keyword')) {
+            $keyword = $request->input('keyword');
+
+            // Perform the search in your database and populate $searchResults.
+            // You can use Eloquent or a query builder for this.
+
+            // For example:
+            $searchResults = Layanan::where('name', 'like', "%$keyword%")->get();
+        }
+
+        // Return the view with the search results or without.
+        return view('layanan_kamar.index', ['searchResults' => $searchResults]);
+    }
+
 }
