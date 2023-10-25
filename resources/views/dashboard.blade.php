@@ -108,6 +108,10 @@
                                 <i class="nav-icon far fa-circle"></i>
                                 <p> Layanan Kamar</p>
                             </a>
+                            <a href="{{ url('kamar') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p> Kamar</p>
+                            </a>
                         </li>
                     </ul>
                 </nav>

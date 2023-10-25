@@ -118,23 +118,5 @@ class LayananKamarController extends Controller
 
     }
 
-    public function search(Request $request)
-    {
-        $searchResults = [];
-
-        // Check if a search query is present
-        if ($request->has('keyword')) {
-            $keyword = $request->input('keyword');
-
-            // Perform the search in your database and populate $searchResults.
-            // You can use Eloquent or a query builder for this.
-
-            // For example:
-            $searchResults = Layanan::where('name', 'like', "%$keyword%")->get();
-        }
-
-        // Return the view with the search results or without.
-        return view('layanan_kamar.index', ['searchResults' => $searchResults]);
-    }
 
 }
