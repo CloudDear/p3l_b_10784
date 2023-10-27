@@ -17,7 +17,8 @@ class Tarif extends Model
 
     protected $fillable = [
         'tarif_terpasang',
-        'season_id'
+        'season_id',
+        'kamar_id'
     ];
 
     //protected $guarded = ['id'];

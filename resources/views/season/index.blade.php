@@ -42,9 +42,6 @@
                                 </form>
                             </div>
 
-
-
-
                             {{-- <a href="{{ route('season.create') }}" class="btn btn-md btn-success mb-3">TAMBAH
                                 SEASON</a> --}}
 
