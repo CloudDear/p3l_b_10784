@@ -69,12 +69,14 @@ class TarifController extends Controller
             //Validasi Formulir
             $this->validate($request, [
                 'tarif_terpasang' => 'required',
-                'season_id' => 'required'
+                'season_id' => 'required',
+                'kamar_id' => 'required'
             ]);
             //Fungsi Simpan Data ke dalam Database
             Tarif::create([
                 'tarif_terpasang' => $request->tarif_terpasang,
-                'season_id' => $request->season_id
+                'season_id' => $request->season_id,
+                'kamar_id' => $request->kamar_id
             ]);
 
             return redirect()->route('tarif.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -112,7 +114,8 @@ class TarifController extends Controller
         // Validation for required fields (and using some regex to validate our numeric value)
         $this->validate($request, [
             'tarif_terpasang' => 'required',
-            'season_id' => 'required'
+            'season_id' => 'required',
+            'kamar_id' => 'required'
         ]);
 
         try {
@@ -121,6 +124,7 @@ class TarifController extends Controller
             // Getting values from the blade template form
             $tarif->tarif_terpasang = $request->get('tarif_terpasang');
             $tarif->season_id = $request->get('season_id');
+            $tarif->kamar_id = $request->get('kamar_id');
             $tarif->save();
 
             return redirect()->route('tarif.index')->with(['success' => 'Data Berhasil Diupdate!']);
@@ -128,8 +132,5 @@ class TarifController extends Controller
             //Redirect jika gagal update
             return redirect()->route('tarif.index')->with(['error' => 'Data Berhasil Diupdate!']);
         }
-
-
-
     }
 }

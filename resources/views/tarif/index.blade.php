@@ -52,6 +52,8 @@
                                                 Terpasang</th>
                                             <th class="text-center">Nama
                                                 Season</th>
+                                            <th class="text-center">Jenis
+                                                Kamar</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -60,6 +62,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $item->tarif_terpasang }}</td>
                                                 <td class="text-center">{{ $item->seasons->nama_season }}</td>
+                                                <td class="text-center">{{ $item->kamars->jenis_kamar }}</td>
                                                 <td class="text-center">
                                                     <form onsubmit="return
 confirm('Apakah Anda Yakin ?');"
