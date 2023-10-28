@@ -1,3 +1,5 @@
+@extends('layouts.main')
+
 <!DOCTYPE html>
 <html lang="en">
 
