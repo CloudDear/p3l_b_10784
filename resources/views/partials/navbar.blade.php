@@ -16,20 +16,13 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $title == 'Posts' ? 'active' : '' }}" href="/posts">Blog</a>
                 </li>
-            </ul>
-        </div>
-
-        <div class="ml-auto">
-            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ $title == 'Login' ? 'active' : '' }}" href="/login"><i
-                            class="bi bi-box-arrow-in-right"></i> Login</a>
+                    <a class="nav-link {{ $title == 'Login' ? 'active' : '' }}" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $title == 'Register' ? 'active' : '' }}" href="/register">Register</a>
                 </li>
             </ul>
         </div>
-
     </div>
 </nav>
