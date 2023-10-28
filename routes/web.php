@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::get('/posts', function () {
 });
 
 Route::get('/login', [LoginController::class, 'index']);
+Route::get('/registration', [RegistrationController::class, 'index']);
 
 //Route Resource
 Route::resource(
