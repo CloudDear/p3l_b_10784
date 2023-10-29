@@ -9,7 +9,8 @@ class RegistrationController extends Controller
     public function index()
     {
         return view('registration.index', [
-            'title' => 'Registration'
+            'title' => 'Registration',
+            'active' => 'registration'
         ]);
     }
 }

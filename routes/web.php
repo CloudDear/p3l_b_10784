@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SMController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RedirectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,27 @@ use App\Http\Controllers\RegistrationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::post('/', [AuthController::class, 'dologin']);
+
+});
+
+Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/redirect', [RedirectController::class, 'cek']);
+});
+
+// untuk admin
+Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+});
+
+// untuk sm
+Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
+    Route::get('/sm', [SMController::class, 'index']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,8 +60,8 @@ Route::get('/posts', function () {
     ]);
 });
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/registration', [RegistrationController::class, 'index']);
+Route::get('/login', [AuthController::class, 'login']);
+// Route::get('/registration', [RegistrationController::class, 'index']);
 
 //Route Resource
 Route::resource(

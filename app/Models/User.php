@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'no_identitas',
+        'nomor_telepon',
+        'alamat',
+        'nama_institusi'
     ];
 
     /**
@@ -41,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // inverse one to Many ke tabel role
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }
