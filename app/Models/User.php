@@ -24,7 +24,7 @@ class User extends Authenticatable
         'no_identitas',
         'nomor_telepon',
         'alamat',
-        'nama_institusi'
+        'nama_institusi',
     ];
 
     /**

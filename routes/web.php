@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SMController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SMController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,10 @@ use App\Http\Controllers\RedirectController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route::get('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/', [AuthController::class, 'login'])->name('login');
-    Route::post('/', [AuthController::class, 'dologin']);
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'dologin']);
 
 });
 
@@ -31,16 +31,39 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 // untuk admin
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/admin', [AdminController::class, 'index']);
+    Route::resource(
+        '/kamar',
+        \App\Http\Controllers\KamarController::class
+    );
 });
 
 // untuk sm
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/sm', [SMController::class, 'index']);
+
+    Route::resource(
+        '/customer',
+        \App\Http\Controllers\CustomerController::class
+    );
+
+    Route::resource(
+        '/tarif',
+        \App\Http\Controllers\TarifController::class
+    );
+    Route::resource(
+        '/season',
+        \App\Http\Controllers\SeasonController::class
+    );
+    Route::resource(
+        '/layanan_kamar',
+        \App\Http\Controllers\LayananKamarController::class
+    );
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('layouts.dashboard');
 });
+
 
 Route::get('/', function () {
     return view('home', [
@@ -60,31 +83,31 @@ Route::get('/posts', function () {
     ]);
 });
 
-Route::get('/login', [AuthController::class, 'login']);
+// Route::get('/login', [AuthController::class, 'login']);
 // Route::get('/registration', [RegistrationController::class, 'index']);
 
 //Route Resource
-Route::resource(
-    '/tarif',
-    \App\Http\Controllers\TarifController::class
-);
+// Route::resource(
+//     '/tarif',
+//     \App\Http\Controllers\TarifController::class
+// );
 
-Route::resource(
-    '/season',
-    \App\Http\Controllers\SeasonController::class
-);
+// Route::resource(
+//     '/season',
+//     \App\Http\Controllers\SeasonController::class
+// );
 
-Route::resource(
-    '/layanan_kamar',
-    \App\Http\Controllers\LayananKamarController::class
-);
+// Route::resource(
+//     '/layanan_kamar',
+//     \App\Http\Controllers\LayananKamarController::class
+// );
 
-Route::resource(
-    '/kamar',
-    \App\Http\Controllers\KamarController::class
-);
+// Route::resource(
+//     '/kamar',
+//     \App\Http\Controllers\KamarController::class
+// );
 
-Route::resource(
-    '/customer',
-    \App\Http\Controllers\CustomerController::class
-);
+// Route::resource(
+//     '/customer',
+//     \App\Http\Controllers\CustomerController::class
+// );
