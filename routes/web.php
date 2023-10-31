@@ -14,53 +14,50 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/login', [AuthController::class, 'login']);
-Route::group(['middleware' => 'guest'], function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'dologin']);
-    Route::resource(
-        '/customer',
-        \App\Http\Controllers\CustomerController::class
-    );
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::get('/login', [AuthController::class, 'login'])->name('login');
+//     Route::post('/login', [AuthController::class, 'dologin']);
+// });
 
-});
+// Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
+//     Route::post('/logout', [AuthController::class, 'logout']);
+//     Route::get('/redirect', [RedirectController::class, 'cek']);
+// });
 
-Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/redirect', [RedirectController::class, 'cek']);
-});
+// // untuk admin
+// Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
+//     Route::get('/admin', [AdminController::class, 'index']);
+// });
 
-// untuk admin
-Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
-    Route::get('/admin', [AdminController::class, 'index']);
-    Route::resource(
-        '/kamar',
-        \App\Http\Controllers\KamarController::class
-    );
-});
-
-// untuk sm
-Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
-    Route::get('/sm', [SMController::class, 'index']);
-
-    Route::resource(
-        '/tarif',
-        \App\Http\Controllers\TarifController::class
-    );
-    Route::resource(
-        '/season',
-        \App\Http\Controllers\SeasonController::class
-    );
-    Route::resource(
-        '/layanan_kamar',
-        \App\Http\Controllers\LayananKamarController::class
-    );
-});
+// // untuk sm
+// Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
+//     Route::get('/sm', [SMController::class, 'index']);
+// });
 
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 });
 
+Route::resource(
+    '/customer',
+    \App\Http\Controllers\CustomerController::class
+);
+Route::resource(
+    '/kamar',
+    \App\Http\Controllers\KamarController::class
+);
+Route::resource(
+    '/tarif',
+    \App\Http\Controllers\TarifController::class
+);
+Route::resource(
+    '/season',
+    \App\Http\Controllers\SeasonController::class
+);
+Route::resource(
+    '/layanan_kamar',
+    \App\Http\Controllers\LayananKamarController::class
+);
 
 Route::get('/', function () {
     return view('home', [
