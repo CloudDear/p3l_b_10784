@@ -2,10 +2,7 @@
 
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SMController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +72,9 @@ Route::get('/posts', function () {
     ]);
 });
 
+Route::get('/login', [LoginController::class, 'index']);
+
+//Route Resource
 Route::resource(
     '/tarif',
     \App\Http\Controllers\TarifController::class
