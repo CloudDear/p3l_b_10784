@@ -13,11 +13,32 @@ class CustomerController extends Controller
      *@return void
      */
 
-    public function index()
+    // public function index()
+    // {
+    //     //get posts
+    //     $customer = Customer::latest()->paginate(5);
+    //     //render view with posts
+    //     return view('customer.index', compact('customer'));
+    // }
+
+    public function index(Request $request)
     {
-        //get posts
-        $customer = Customer::latest()->paginate(5);
-        //render view with posts
+        // Get the search query from the request
+        $keyword = $request->input('keyword');
+
+        // Check if a search query is present
+        if ($keyword) {
+            // Perform the search and paginate the results
+            $customer = Customer::where('nama_customer', 'like', "%$keyword%")
+                ->latest()
+                ->paginate(5);
+
+        } else {
+            // If no search query is present, get all records
+            $customer = Customer::latest()->paginate(5);
+        }
+
+        // Render the view with the posts
         return view('customer.index', compact('customer'));
     }
 
@@ -47,7 +68,8 @@ class CustomerController extends Controller
                 'no_identitas' => 'required',
                 'nomor_telepon' => 'required',
                 'alamat' => 'required',
-                'nama_institusi' => 'required'
+                'nama_institusi' => 'required',
+                'password' => 'required'
 
             ]);
             //Fungsi Simpan Data ke dalam Database
@@ -57,7 +79,8 @@ class CustomerController extends Controller
                 'no_identitas' => $request->no_identitas,
                 'nomor_telepon' => $request->nomor_telepon,
                 'alamat' => $request->alamat,
-                'nama_institusi' => $request->nama_institusi
+                'nama_institusi' => $request->nama_institusi,
+                'password' => $request->password
             ]);
 
             return redirect()->route('customer.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -96,7 +119,8 @@ class CustomerController extends Controller
             'no_identitas' => 'required',
             'nomor_telepon' => 'required',
             'alamat' => 'required',
-            'nama_institusi' => 'required'
+            'nama_institusi' => 'required',
+            'password' => 'required'
         ]);
 
         try {
@@ -108,6 +132,7 @@ class CustomerController extends Controller
             $customer->nomor_telepon = $request->get('nomor_telepon');
             $customer->alamat = $request->get('alamat');
             $customer->nama_institusi = $request->get('nama_institusi');
+            $customer->password = $request->get('password');
             $customer->save();
 
             return redirect()->route('customer.index')->with(['success' => 'Data Berhasil Diupdate!']);
