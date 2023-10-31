@@ -52,19 +52,19 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Nama Jenis Kamar</label>
+                                        <label class="font-weight-bold">Nama Season</label>
 
-                                        <select name="kamar_id"
-                                            class="form-control @error('kamar_id') is-invalid @enderror">
+                                        <select name="season_id"
+                                            class="form-control @error('season_id') is-invalid @enderror">
                                             <option value="" selected disabled>
-                                                Pilih Jenis Kamar
+                                                Pilih Season
                                             </option>
-                                            @foreach ($kamar as $kamar)
-                                                <option value="{{ $kamar->id }}">{{ $kamar->jenis_kamar }}
+                                            @foreach ($season as $season)
+                                                <option value="{{ $season->id }}">{{ $season->nama_season }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('kamar_id')
+                                        @error('season_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

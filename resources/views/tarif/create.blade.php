@@ -65,27 +65,6 @@
                                             </div>
                                         @enderror
                                     </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Kamar</label>
-
-                                        <select name="kamar_id"
-                                            class="form-control @error('kamar_id') is-invalid @enderror">
-                                            <option value="" selected disabled>
-                                                Pilih Jenis Kamar
-                                            </option>
-                                            @foreach ($kamar as $kamar)
-                                                <option value="{{ $kamar->id }}">{{ $kamar->jenis_kamar }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('kamar_id')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-
                                 </div>
                                 <button type="submit" class="btn btn-md 
 btn-primary">SIMPAN</button>
