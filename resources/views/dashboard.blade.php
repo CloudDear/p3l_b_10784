@@ -85,7 +85,7 @@
                         <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Nama Praktikan</a>
+                        <a href="#" class="d-block">Admin</a>
                     </div>
                 </div>
                 <!-- SidebarSearch Form -->
@@ -121,6 +121,10 @@
                                 <i class="nav-icon far fa-circle"></i>
                                 <p> Kamar</p>
                             </a>
+                            <a href="{{ url('customer') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p> Customer</p>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -136,7 +140,7 @@
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
-            <div class="float-right d-none d-sm-inline"> NPM_PRAKTIKAN
+            <div class="float-right d-none d-sm-inline"> 200710784
             </div>
             <!-- Default to the left -->
             <strong>Copyright &copy; {{ date('Y') }} <a href="#">AdminLTE.io</a>. </strong> All rights
