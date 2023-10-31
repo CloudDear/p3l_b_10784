@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RedirectController;
@@ -20,6 +21,10 @@ use App\Http\Controllers\SMController;
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'dologin']);
+    Route::resource(
+        '/customer',
+        \App\Http\Controllers\CustomerController::class
+    );
 
 });
 
@@ -40,11 +45,6 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 // untuk sm
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/sm', [SMController::class, 'index']);
-
-    Route::resource(
-        '/customer',
-        \App\Http\Controllers\CustomerController::class
-    );
 
     Route::resource(
         '/tarif',
@@ -82,32 +82,3 @@ Route::get('/posts', function () {
         "title" => "Posts"
     ]);
 });
-
-// Route::get('/login', [AuthController::class, 'login']);
-// Route::get('/registration', [RegistrationController::class, 'index']);
-
-//Route Resource
-// Route::resource(
-//     '/tarif',
-//     \App\Http\Controllers\TarifController::class
-// );
-
-// Route::resource(
-//     '/season',
-//     \App\Http\Controllers\SeasonController::class
-// );
-
-// Route::resource(
-//     '/layanan_kamar',
-//     \App\Http\Controllers\LayananKamarController::class
-// );
-
-// Route::resource(
-//     '/kamar',
-//     \App\Http\Controllers\KamarController::class
-// );
-
-// Route::resource(
-//     '/customer',
-//     \App\Http\Controllers\CustomerController::class
-// );

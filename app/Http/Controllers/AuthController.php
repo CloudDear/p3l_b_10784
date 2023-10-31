@@ -15,6 +15,7 @@ class AuthController extends Controller
             'active' => 'login'
         ]);
     }
+
     public function dologin(Request $request)
     {
         // Validation
