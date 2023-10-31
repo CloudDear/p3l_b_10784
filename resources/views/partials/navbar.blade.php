@@ -11,18 +11,8 @@
                     <a class="nav-link {{ $title == 'Home' ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title == 'About' ? 'active' : '' }}" href="/about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $title == 'Posts' ? 'active' : '' }}" href="/posts">Blog</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ $title == 'Login' ? 'active' : '' }}" href="/login">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $title == 'Register' ? 'active' : '' }}" href="/register">Register</a>
-                </li>
-
             </ul>
         </div>
     </div>

@@ -42,7 +42,7 @@ class SeasonController extends Controller
         return view('season.index', compact('season'));
     }
 
-
+    
 
     /**
      * create

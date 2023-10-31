@@ -13,24 +13,11 @@ class CustomerController extends Controller
      *@return void
      */
 
-    public function index(Request $request)
+    public function index()
     {
-        // Get the search query from the request
-        $keyword = $request->input('keyword');
-
-        // Check if a search query is present
-        if ($keyword) {
-            // Perform the search and paginate the results
-            $customer = Customer::where('nama_customer', 'like', "%$keyword%")
-                ->latest()
-                ->paginate(5);
-
-        } else {
-            // If no search query is present, get all records
-            $customer = Customer::latest()->paginate(5);
-        }
-
-        // Render the view with the posts
+        //get posts
+        $customer = Customer::latest()->paginate(5);
+        //render view with posts
         return view('customer.index', compact('customer'));
     }
 
