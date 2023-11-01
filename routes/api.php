@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'getAllCustomer']);
+Route::get('/customer/{id}', [App\Http\Controllers\CustomerController::class, 'showAllCustomer']);
+Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'storeAllCustomer']);
+Route::get('/customer/{id}', [App\Http\Controllers\CustomerController::class, 'updateAllCustomer']);
+Route::get('/customer/{id}', [App\Http\Controllers\CustomerController::class, 'destroyAllCustomer']);
