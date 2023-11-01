@@ -4,9 +4,130 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class CustomerController extends Controller
 {
+    public function getAllCustomer()
+    {
+        return response()->json([
+            'message' => 'success',
+            'data' => Customer::all()
+        ], 200);
+    }
+
+    public function storeAllCustomer(Request $request)
+    {
+        $storeData = $request->all();
+        $validate = Validator::make($storeData, [
+            'nama_customer' => 'required',
+            'email' => 'required',
+            'no_identitas' => 'required',
+            'nomor_telepon' => 'required',
+            'alamat' => 'required',
+            'nama_institusi' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($validate->fails())
+            return response(['message' => $validate->errors()], 400);
+
+        $customer = Customer::create($storeData);
+        return response([
+            'message' => 'Add customer Success',
+            'data' => $customer
+        ], 200);
+    }
+
+    public function showAllCustomer($id)
+    {
+        $customer = Customer::find($id);
+
+        if (!is_null($customer)) {
+            return response([
+                'message' => 'Retrieve Customer Success',
+                'data' => $customer
+            ], 200);
+        }
+
+        return response([
+            'message' => 'Customer Not Found',
+            'data' => null
+        ], 404);
+    }
+
+    public function updateAllCustomer(Request $request, $id)
+    {
+        $customer = Customer::find($id);
+        if (is_null($customer)) {
+            return response([
+                'message' => 'Customer Not Found',
+                'data' => null
+            ], 404);
+        }
+
+        $updateData = $request->all();
+        $validate = Validator::make($updateData, [
+            'nama_customer' => 'required',
+            'email' => 'required',
+            'no_identitas' => 'required',
+            'nomor_telepon' => 'required',
+            'alamat' => 'required',
+            'nama_institusi' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($validate->fails())
+            return response(['message' => $validate->errors()], 400);
+
+        $customer->nama_customer = $updateData['nama_customer'];
+        $customer->email = $updateData['email'];
+        $customer->no_identitas = $updateData['alamat'];
+        $customer->nomor_telepon = $updateData['nomor_telepon'];
+        $customer->alamat = $updateData['alamat'];
+        $customer->nama_institusi = $updateData['nama_institusi'];
+        $customer->password = $updateData['password'];
+
+        if ($customer->save()) {
+            return response([
+                'message' => 'Update Customer Success',
+                'data' => $customer
+            ], 200);
+        }
+
+        return response([
+            'message' => 'Update Customer Failed',
+            'data' => null
+        ], 400);
+
+    }
+
+    public function destroyAllCustomer($id)
+    {
+        $customer = Customer::find($id);
+
+        if (is_null($customer)) {
+            return response([
+                'message' => 'Customer Not Found',
+                'data' => null
+            ], 404);
+        }
+
+        if ($customer->delete()) {
+            return response([
+                'message' => 'Delete Customer Success',
+                'data' => $customer
+            ], 200);
+        }
+
+        return response([
+            'message' => 'Delete Customer Failed',
+            'data' => null
+        ], 400);
+    }
+
+
     /**
      * index
      *
@@ -40,6 +161,10 @@ class CustomerController extends Controller
 
         // Render the view with the posts
         return view('customer.index', compact('customer'));
+
+        // return response()->json([
+        //     'data' => $customer
+        // ], 200)
     }
 
     /**
