@@ -12,15 +12,6 @@ class KamarController extends Controller
      *
      *@return void
      */
-
-    // public function index()
-    // {
-    //     //get posts
-    //     $kamar = Kamar::latest()->paginate(5);
-    //     //render view with posts
-    //     return view('kamar.index', compact('kamar'));
-    // }
-
     public function index(Request $request)
     {
         // Get the search query from the request
@@ -39,7 +30,8 @@ class KamarController extends Controller
         }
 
         // Render the view with the posts
-        return view('kamar.index', compact('kamar'));
+        $user = auth()->user();
+        return view('kamar.index', compact('kamar', 'user'));
     }
 
     /**

@@ -8,6 +8,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $user = auth()->user();
+        return view('admin.index', compact('user'));
     }
 }

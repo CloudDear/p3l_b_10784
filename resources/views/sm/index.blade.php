@@ -108,6 +108,10 @@
                                 <i class="nav-icon far fa-circle"></i>
                                 <p> Layanan Kamar</p>
                             </a>
+                            <a href="{{ url('customer') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p> Customer</p>
+                            </a>
                             {{-- <a href="{{ url('customer') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p> Layanan Kamar</p>

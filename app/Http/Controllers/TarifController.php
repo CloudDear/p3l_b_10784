@@ -14,15 +14,6 @@ class TarifController extends Controller
      *
      *@return void
      */
-
-    // public function index()
-    // {
-    //     //get posts
-    //     $tarif = Tarif::latest()->paginate(5);
-    //     //render view with posts
-    //     return view('tarif.index', compact('tarif'));
-    // }
-
     public function index(Request $request)
     {
         // Get the search query from the request

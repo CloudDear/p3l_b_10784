@@ -12,15 +12,6 @@ class SeasonController extends Controller
      *
      *@return void
      */
-
-    // public function index()
-    // {
-    //     //get posts
-    //     $season = Season::latest()->paginate(5);
-    //     //render view with posts
-    //     return view('season.index', compact('season'));
-    // }
-
     public function index(Request $request)
     {
         // Get the search query from the request
@@ -42,7 +33,7 @@ class SeasonController extends Controller
         return view('season.index', compact('season'));
     }
 
-    
+
 
     /**
      * create

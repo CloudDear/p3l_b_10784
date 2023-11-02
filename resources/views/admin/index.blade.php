@@ -92,6 +92,14 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
+                            {{-- @if ($user->role_id === 1)
+                                { --}}
+                            {{-- <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p> {{ $user->role_id }}</p>
+                            </a> --}}
+                            {{-- } --}}
+                            {{-- @endif --}}
                             <a href="{{ url('kamar') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p> Kamar</p>

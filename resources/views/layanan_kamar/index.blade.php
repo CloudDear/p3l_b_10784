@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('sm.index')
 
 @section('content')
     <div class="content-header">

@@ -3,6 +3,11 @@
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SMController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +59,11 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::resource(
         '/layanan_kamar',
         \App\Http\Controllers\LayananKamarController::class
+    );
+
+    Route::resource(
+        '/customer',
+        \App\Http\Controllers\CustomerController::class
     );
 });
 

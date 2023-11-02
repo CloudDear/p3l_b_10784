@@ -1,17 +1,17 @@
-@extends('admin.index')
+@extends('sm.index')
 
-@section('admin_content')
+@section('content')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Edit Kamar</h1>
+                    <h1 class="m-0">Edit Customer</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <a href="#">Kamar</a>
+                            <a href="#">Customer</a>
                         </li>
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
@@ -31,19 +31,50 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('kamar.update', $old->id) }}" method="POST"
+                            <form action="{{ route('customer.update', $old->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-bold">Nama Customer</label>
+
+                                        <input type="text"
+                                            class="form-control @error('nama_customer') is-invalid @enderror"
+                                            name="nama_customer" value="{{ $old->nama_customer }}"
+                                            placeholder="Masukkan Nama Customer">
+
+                                        @error('nama_customer')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
 
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Jenis Kamar</label>
+                                        <label class="font-weight-bold">Email</label>
+
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                            name="email" value="{{ $old->email }}" placeholder="Masukkan Email">
+
+                                        @error('email')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-bold">No Identitas</label>
+
                                         <input type="text"
-                                            class="form-control @error('jenis_kamar') is-invalid @enderror"
-                                            name="jenis_kamar" value="{{ $old->jenis_kamar }}"
-                                            placeholder="Masukkan Jenis Kamar">
-                                        @error('jenis_kamar')
+                                            class="form-control @error('no_identitas') is-invalid @enderror"
+                                            name="no_identitas" value="{{ $old->no_identitas }}"
+                                            placeholder="Masukkan No Identitas">
+
+                                        @error('no_identitas')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -51,12 +82,14 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Tipe Tempat Tidur</label>
+                                        <label class="font-weight-bold">Nomor Telepon</label>
+
                                         <input type="text"
-                                            class="form-control @error('tipe_tempat_tidur') is-invalid @enderror"
-                                            name="tipe_tempat_tidur" value="{{ $old->tipe_tempat_tidur }}"
-                                            placeholder="Masukkan Tipe Tempat Tidur">
-                                        @error('tipe_tempat_tidur')
+                                            class="form-control @error('nomor_telepon') is-invalid @enderror"
+                                            name="nomor_telepon" value="{{ $old->nomor_telepon }}"
+                                            placeholder="Masukkan Nomor Telepon">
+
+                                        @error('nomor_telepon')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -64,11 +97,12 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Tarif Awal</label>
-                                        <input type="text" class="form-control @error('tarif_awal') is-invalid @enderror"
-                                            name="tarif_awal" value="{{ $old->tarif_awal }}"
-                                            placeholder="Masukkan Tarif Awal">
-                                        @error('tarif_awal')
+                                        <label class="font-weight-bold">Alamat</label>
+
+                                        <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                                            name="alamat" value="{{ $old->alamat }}" placeholder="Masukkan Alamat">
+
+                                        @error('alamat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -76,12 +110,14 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Ukuran Kamar</label>
+                                        <label class="font-weight-bold">Nama Institusi</label>
+
                                         <input type="text"
-                                            class="form-control @error('ukuran_kamar') is-invalid @enderror"
-                                            name="ukuran_kamar" value="{{ $old->ukuran_kamar }}"
-                                            placeholder="Masukkan Ukuran Kamar">
-                                        @error('ukuran_kamar')
+                                            class="form-control @error('nama_institusi') is-invalid @enderror"
+                                            name="nama_institusi" value="{{ $old->nama_institusi }}"
+                                            placeholder="Masukkan Nama Institusi">
+
+                                        @error('nama_institusi')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -89,38 +125,12 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Kapasitas Kamar</label>
-                                        <input type="text"
-                                            class="form-control @error('kapasitas_kamar') is-invalid @enderror"
-                                            name="kapasitas_kamar" value="{{ $old->kapasitas_kamar }}"
-                                            placeholder="Masukkan Kapasitas Kamar">
-                                        @error('kapasitas_kamar')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                                        <label class="font-weight-bold">Password</label>
 
-                                    <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Rincian Kamar</label>
-                                        <input type="text"
-                                            class="form-control @error('rincian_kamar') is-invalid @enderror"
-                                            name="rincian_kamar" value="{{ $old->rincian_kamar }}"
-                                            placeholder="Masukkan Rincian Kamar">
-                                        @error('rincian_kamar')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                                        <input type="text" class="form-control @error('password') is-invalid @enderror"
+                                            name="password" value="{{ $old->password }}" placeholder="Masukkan Password">
 
-                                    <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Detail Kamar</label>
-                                        <input type="text"
-                                            class="form-control @error('detail_kamar') is-invalid @enderror"
-                                            name="detail_kamar" value="{{ $old->detail_kamar }}"
-                                            placeholder="Masukkan Detail Kamar">
-                                        @error('detail_kamar')
+                                        @error('password')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
