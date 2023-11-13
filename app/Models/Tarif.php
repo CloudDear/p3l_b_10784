@@ -17,8 +17,7 @@ class Tarif extends Model
 
     protected $fillable = [
         'tarif_terpasang',
-        'season_id',
-        // 'kamar_id'
+        'season_id'
     ];
 
     //protected $guarded = ['id'];
@@ -28,8 +27,8 @@ class Tarif extends Model
         return $this->belongsTo(Season::class, 'season_id'); //bagian ini
     }
 
-    // public function kamars()
-    // {
-    //     return $this->belongsTo(Kamar::class);
-    // }
+    public function kamars()
+    {
+        return $this->hasMany(Kamar::class, 'kamar_id');
+    }
 }

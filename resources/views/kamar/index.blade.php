@@ -67,6 +67,8 @@
                                                 Kamar</th>
                                             <th class="text-center">Detail
                                                 Kamar</th>
+                                            <th class="text-center">Tarif
+                                                Promo</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -80,6 +82,7 @@
                                                 <td class="text-center">{{ $item->kapasitas_kamar }}</td>
                                                 <td class="text-center">{{ $item->rincian_kamar }}</td>
                                                 <td class="text-center">{{ $item->detail_kamar }}</td>
+                                                <td class="text-center">{{ $item->tarifs->tarif_terpasang }}</td>
                                                 <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('kamar.destroy', $item->id) }}" method="POST">

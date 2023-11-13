@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kamar;
+use App\Models\Tarif;
 use Illuminate\Http\Request;
 
 class KamarController extends Controller
@@ -41,7 +42,8 @@ class KamarController extends Controller
      */
     public function create()
     {
-        return view('kamar.create');
+        $tarif = Tarif::all();
+        return view('kamar.create', compact('tarif'));
     }
 
     /**
@@ -61,7 +63,8 @@ class KamarController extends Controller
                 'ukuran_kamar' => 'required',
                 'kapasitas_kamar' => 'required',
                 'rincian_kamar' => 'required',
-                'detail_kamar' => 'required'
+                'detail_kamar' => 'required',
+                'tarif_id' => 'required'
 
             ]);
             //Fungsi Simpan Data ke dalam Database
@@ -72,9 +75,9 @@ class KamarController extends Controller
                 'ukuran_kamar' => $request->ukuran_kamar,
                 'kapasitas_kamar' => $request->kapasitas_kamar,
                 'rincian_kamar' => $request->rincian_kamar,
-                'detail_kamar' => $request->detail_kamar
+                'detail_kamar' => $request->detail_kamar,
+                'tarif_id' => $request->tarif_id
             ]);
-
             return redirect()->route('kamar.index')->with(['success' => 'Data Berhasil Disimpan!']);
 
         } catch (Exception $e) {
@@ -99,7 +102,8 @@ class KamarController extends Controller
     public function edit($id)
     {
         $kamar = Kamar::find($id);
-        return view('kamar.edit', ['old' => $kamar]); // -> resources/views/stocks/edit.blade.php
+        $tarif = Tarif::all();
+        return view('kamar.edit', ['old' => $kamar], compact('tarif')); // -> resources/views/stocks/edit.blade.php
     }
 
     public function update(Request $request, $id)
@@ -112,11 +116,13 @@ class KamarController extends Controller
             'ukuran_kamar' => 'required',
             'kapasitas_kamar' => 'required',
             'rincian_kamar' => 'required',
-            'detail_kamar' => 'required'
+            'detail_kamar' => 'required',
+            'tarif_id' => 'required'
         ]);
 
         try {
             $kamar = Kamar::find($id);
+            $tarif = Tarif::all();
             // Getting values from the blade template form
             $kamar->jenis_kamar = $request->get('jenis_kamar');
             $kamar->tipe_tempat_tidur = $request->get('tipe_tempat_tidur');
@@ -125,6 +131,7 @@ class KamarController extends Controller
             $kamar->kapasitas_kamar = $request->get('kapasitas_kamar');
             $kamar->rincian_kamar = $request->get('rincian_kamar');
             $kamar->detail_kamar = $request->get('detail_kamar');
+            $kamar->tarif_id = $request->get('tarif_id');
             $kamar->save();
 
             return redirect()->route('kamar.index')->with(['success' => 'Data Berhasil Diupdate!']);

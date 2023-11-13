@@ -12,6 +12,8 @@ class RedirectController extends Controller
             return redirect('/admin');
         } else if (auth()->user()->role_id === 2) {
             return redirect('/sm');
+        } else if (auth()->user()->role_id === 5) {
+            return redirect('/halamanCustomer');
         }
 
     }

@@ -22,12 +22,13 @@ class Kamar extends Model
         'kapasitas_kamar',
         'rincian_kamar',
         'detail_kamar',
+        'tarif_id'
     ];
 
     //protected $guarded = ['id'];
 
     public function tarifs()
     {
-        return $this->hasMany(Tarif::class);
+        return $this->belongsTo(Tarif::class, 'tarif_id'); //bagian ini
     }
 }

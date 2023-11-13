@@ -64,6 +64,26 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
+                                        <label class="font-weight-bold">Tarif Promo</label>
+
+                                        <select name="tarif_id"
+                                            class="form-control @error('tarif_id') is-invalid @enderror">
+                                            <option value="" selected disabled>
+                                                Pilih Tarif
+                                            </option>
+                                            @foreach ($tarif as $tarif)
+                                                <option value="{{ $tarif->id }}">{{ $tarif->tarif_terpasang }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('tarif_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-6">
                                         <label class="font-weight-bold">Tarif Awal</label>
                                         <input type="text" class="form-control @error('tarif_awal') is-invalid @enderror"
                                             name="tarif_awal" value="{{ $old->tarif_awal }}"

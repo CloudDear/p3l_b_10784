@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarif;
 use App\Models\Season;
-use App\Models\Kamar;
 use Illuminate\Http\Request;
 
 class TarifController extends Controller
@@ -43,8 +42,7 @@ class TarifController extends Controller
     public function create()
     {
         $season = Season::all();
-        $kamar = Kamar::all();
-        return view('tarif.create', compact('season', 'kamar'));
+        return view('tarif.create', compact('season'));
     }
 
     /**
@@ -94,8 +92,7 @@ class TarifController extends Controller
     {
         $tarif = Tarif::find($id);
         $season = Season::all();
-        $kamar = Kamar::all();
-        return view('tarif.edit', ['old' => $tarif], compact('season', 'kamar')); // -> resources/views/stocks/edit.blade.php
+        return view('tarif.edit', ['old' => $tarif], compact('season')); // -> resources/views/stocks/edit.blade.php
     }
 
     public function update(Request $request, $id)

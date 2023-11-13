@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->integer('kapasitas_kamar');
             $table->string('rincian_kamar');
             $table->string('detail_kamar');
+            $table->foreignId('tarif_id')->references('id')->on('tarifs')->onDelete('cascade');
             $table->timestamps();
         });
     }
